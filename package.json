@@ -1,0 +1,53 @@
+{
+  "name": "spliit-api",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint",
+    "check-types": "tsc --noEmit",
+    "check-formatting": "prettier -c src",
+    "prettier": "prettier -w src",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.4",
+    "@hookform/resolvers": "^3.3.2",
+    "@prisma/client": "^5.6.0",
+    "@trpc/client": "^11.0.0-rc.586",
+    "@trpc/react-query": "^11.0.0-rc.586",
+    "@trpc/server": "^11.0.0-rc.586",
+    "class-variance-authority": "^0.7.0",
+    "content-disposition": "^0.5.4",
+    "dayjs": "^1.11.10",
+    "nanoid": "^5.0.4",
+    "negotiator": "^0.6.3",
+    "openai": "^4.25.0",
+    "pg": "^8.11.3",
+    "prisma": "^5.7.0",
+    "sharp": "^0.33.2",
+    "superjson": "^2.2.1",
+    "ts-pattern": "^5.0.6",
+    "uuid": "^9.0.1",
+    "vaul": "^0.8.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@total-typescript/ts-reset": "^0.5.1",
+    "@types/content-disposition": "^0.5.8",
+    "@types/negotiator": "^0.6.3",
+    "@types/node": "^20",
+    "@types/pg": "^8.10.9",
+    "@types/uuid": "^9.0.6",
+    "autoprefixer": "^10",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.57.1",
+    "globals": "^15.11.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.11.0"
+  }
+}

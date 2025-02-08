@@ -1,0 +1,170 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model User {
+  id             String          @id @default(uuid())
+  name           String
+  email          String          @unique
+  recentGroups   RecentGroup[]
+  starredGroups  StarredGroup[]
+  archivedGroups ArchivedGroup[]
+}
+
+model RecentGroup {
+  id        String   @id @default(uuid())
+  groupId   String
+  name      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, groupId])
+}
+
+model StarredGroup {
+  id      String                @id @default(uuid())
+  userId  String
+  user    User                  @relation(fields: [userId], references: [id])
+  groupId String
+
+  @@unique([userId, groupId])
+}
+
+model ArchivedGroup {
+  id      String                @id @default(uuid())
+  userId  String
+  user    User                  @relation(fields: [userId], references: [id])
+  groupId String
+
+  @@unique([userId, groupId])
+}
+
+model Group {
+  id           String        @id
+  name         String
+  information  String?       @db.Text
+  currency     String        @default("₹")
+  participants Participant[]
+  expenses     Expense[]
+  activities   Activity[]
+  createdAt    DateTime      @default(now())
+}
+
+model Participant {
+  id              String           @id
+  name            String
+  group           Group            @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  groupId         String
+  expensesPaidBy  Expense[]
+  expensesPaidFor ExpensePaidFor[]
+  expenseComments ExpenseComment[]
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  grouping String
+  name     String
+  Expense  Expense[]
+}
+
+model Expense {
+  id              String            @id
+  group           Group             @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  expenseDate     DateTime          @default(dbgenerated("CURRENT_DATE")) @db.Date
+  title           String
+  category        Category?         @relation(fields: [categoryId], references: [id])
+  categoryId      Int               @default(0)
+  amount          Int
+  paidBy          Participant       @relation(fields: [paidById], references: [id], onDelete: Cascade)
+  paidById        String
+  paidFor         ExpensePaidFor[]
+  groupId         String
+  isReimbursement Boolean           @default(false)
+  splitMode       SplitMode         @default(EVENLY)
+  createdAt       DateTime          @default(now())
+  documents       ExpenseDocument[]
+  comments        ExpenseComment[]
+  notes           String?
+  recurringDays   Int               @default(0)
+  location        Point?
+}
+
+model Point {
+  id        String   @id
+  latitude  Float
+  longitude Float
+  Expense   Expense? @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model ExpenseComment {
+  id            String      @id
+  comment       String
+  time          DateTime    @default(now())
+  Expense       Expense?    @relation(fields: [expenseId], references: [id])
+  expenseId     String?
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+}
+
+model ExpenseDocument {
+  id        String   @id
+  url       String
+  width     Int
+  height    Int
+  Expense   Expense? @relation(fields: [expenseId], references: [id])
+  expenseId String?
+}
+
+enum SplitMode {
+  EVENLY
+  BY_SHARES
+  BY_PERCENTAGE
+  BY_AMOUNT
+}
+
+model ExpensePaidFor {
+  expense       Expense     @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  expenseId     String
+  participantId String
+  shares        Int         @default(1)
+
+  @@id([expenseId, participantId])
+}
+
+model Activity {
+  id            String       @id
+  group         Group        @relation(fields: [groupId], references: [id])
+  groupId       String
+  time          DateTime     @default(now())
+  activityType  ActivityType
+  participantId String?
+  expenseId     String?
+  data          String?
+}
+
+enum ActivityType {
+  UPDATE_GROUP
+  CREATE_EXPENSE
+  UPDATE_EXPENSE
+  DELETE_EXPENSE
+}
+
+model RecurringTransactions {
+  groupId      String
+  expenseId    String
+  createNextAt Int
+  lockId       String? @unique
+
+  @@id([groupId, expenseId])
+  @@index([groupId, expenseId, createNextAt(sort: Desc)])
+}

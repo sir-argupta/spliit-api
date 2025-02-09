@@ -1,6 +1,6 @@
-import { createExpense } from '@/lib/api'
-import { expenseFormSchema } from '@/lib/schemas'
-import { baseProcedure } from '@/trpc/init'
+import { createExpense } from '../../../../lib/api'
+import { expenseFormSchema } from '../../../../lib/schemas'
+import { baseProcedure } from '../../../init'
 import { z } from 'zod'
 
 export const createGroupExpenseProcedure = baseProcedure

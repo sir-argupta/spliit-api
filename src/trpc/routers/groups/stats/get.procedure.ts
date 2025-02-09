@@ -1,10 +1,10 @@
-import { getGroupExpenses } from '@/lib/api'
+import { getGroupExpenses } from '../../../../lib/api'
 import {
   getTotalActiveUserPaidFor,
   getTotalActiveUserShare,
   getTotalGroupSpending,
-} from '@/lib/totals'
-import { baseProcedure } from '@/trpc/init'
+} from '../../../../lib/totals'
+import { baseProcedure } from '../../../init'
 import { z } from 'zod'
 
 export const getGroupStatsProcedure = baseProcedure

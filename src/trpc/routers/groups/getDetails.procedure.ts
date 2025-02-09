@@ -1,5 +1,5 @@
-import { getGroup, getGroupExpensesParticipants } from '@/lib/api'
-import { baseProcedure } from '@/trpc/init'
+import { getGroup, getGroupExpensesParticipants } from '../../../lib/api'
+import { baseProcedure } from '../../init'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 

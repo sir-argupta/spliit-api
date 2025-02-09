@@ -1,5 +1,5 @@
-import { getComments } from '@/lib/api'
-import { baseProcedure } from '@/trpc/init'
+import { getComments } from '../../../../../lib/api'
+import { baseProcedure } from '../../../../init'
 import { z } from 'zod'
 
 export const listExpenseCommentsProcedure = baseProcedure

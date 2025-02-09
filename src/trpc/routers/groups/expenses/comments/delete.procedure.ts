@@ -1,5 +1,5 @@
-import { deleteComment } from '@/lib/api'
-import { baseProcedure } from '@/trpc/init'
+import { deleteComment } from '../../../../../lib/api'
+import { baseProcedure } from '../../../../init'
 import { z } from 'zod'
 
 export const deleteExpenseCommentProcedure = baseProcedure

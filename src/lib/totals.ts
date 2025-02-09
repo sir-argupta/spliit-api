@@ -1,4 +1,4 @@
-import { getGroupExpenses } from '@/lib/api'
+import { getGroupExpenses } from './api'
 
 export function getTotalGroupSpending(
   expenses: NonNullable<Awaited<ReturnType<typeof getGroupExpenses>>>,

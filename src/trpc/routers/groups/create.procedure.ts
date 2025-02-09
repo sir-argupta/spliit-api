@@ -1,6 +1,6 @@
-import { createGroup } from '@/lib/api'
-import { groupFormSchema } from '@/lib/schemas'
-import { baseProcedure } from '@/trpc/init'
+import { createGroup } from '../../../lib/api'
+import { groupFormSchema } from '../../../lib/schemas'
+import { baseProcedure } from '../../init'
 import { z } from 'zod'
 
 export const createGroupProcedure = baseProcedure

@@ -1,5 +1,5 @@
-import { getGroupExpenses } from '@/lib/api'
-import { baseProcedure } from '@/trpc/init'
+import { getGroupExpenses } from '../../../../lib/api'
+import { baseProcedure } from '../../../init'
 import { z } from 'zod'
 
 export const listGroupExpensesProcedure = baseProcedure

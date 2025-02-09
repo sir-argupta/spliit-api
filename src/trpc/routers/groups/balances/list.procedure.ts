@@ -1,10 +1,10 @@
-import { getGroupExpenses } from '@/lib/api'
+import { getGroupExpenses } from '../../../../lib/api'
 import {
   getBalances,
   getPublicBalances,
   getSuggestedReimbursements,
-} from '@/lib/balances'
-import { baseProcedure } from '@/trpc/init'
+} from '../../../../lib/balances'
+import { baseProcedure } from '../../../init'
 import { z } from 'zod'
 
 export const listGroupBalancesProcedure = baseProcedure

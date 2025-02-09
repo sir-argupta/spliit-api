@@ -1,6 +1,6 @@
+import { z } from 'zod'
 import { getActivities } from '../../../../lib/api'
 import { baseProcedure } from '../../../init'
-import { z } from 'zod'
 
 export const listGroupActivitiesProcedure = baseProcedure
   .input(

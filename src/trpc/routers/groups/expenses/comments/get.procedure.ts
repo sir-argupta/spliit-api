@@ -1,7 +1,7 @@
-import { getComment } from '../../../../../lib/api'
-import { baseProcedure } from '../../../../init'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
+import { getComment } from '../../../../../lib/api'
+import { baseProcedure } from '../../../../init'
 
 export const getExpenseCommentProcedure = baseProcedure
   .input(z.object({ commentId: z.string().min(1) }))

@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import { getGroupExpenses } from '../../../../lib/api'
 import {
   getTotalActiveUserPaidFor,
@@ -5,7 +6,6 @@ import {
   getTotalGroupSpending,
 } from '../../../../lib/totals'
 import { baseProcedure } from '../../../init'
-import { z } from 'zod'
 
 export const getGroupStatsProcedure = baseProcedure
   .input(

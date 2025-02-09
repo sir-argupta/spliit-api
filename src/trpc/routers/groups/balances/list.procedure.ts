@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import { getGroupExpenses } from '../../../../lib/api'
 import {
   getBalances,
@@ -5,7 +6,6 @@ import {
   getSuggestedReimbursements,
 } from '../../../../lib/balances'
 import { baseProcedure } from '../../../init'
-import { z } from 'zod'
 
 export const listGroupBalancesProcedure = baseProcedure
   .input(z.object({ groupId: z.string().min(1) }))

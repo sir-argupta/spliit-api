@@ -1,7 +1,7 @@
-import { getExpenseActivity } from '../../../../../lib/api'
-import { baseProcedure } from '../../../../init'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
+import { getExpenseActivity } from '../../../../../lib/api'
+import { baseProcedure } from '../../../../init'
 
 export const listExpenseActivityProcedure = baseProcedure
   .input(z.object({ expenseId: z.string().min(1) }))

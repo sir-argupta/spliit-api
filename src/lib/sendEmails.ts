@@ -110,9 +110,9 @@
 //       subject: 'New sign-in to your SPLiT account',
 //       emailPreview: `- For ${userName}'s SPLiT account ${userEmail}`,
 //       emailTitle: 'New sign-in to your SPLiT account',
-//       emailMessage: `There was a new login to your SPLiT account from the following 
+//       emailMessage: `There was a new login to your SPLiT account from the following
 //         device: SPLiT Application - Android/iPhone.
-//         We're sending this note to confirm that it was you. 
+//         We're sending this note to confirm that it was you.
 //         If you recently logged into your SPLiT account, you can safely ignore this email.`,
 //       isButtonVisible: false,
 //     }),
